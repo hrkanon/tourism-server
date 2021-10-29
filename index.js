@@ -5,6 +5,9 @@ require("dotenv").config();
 const { MongoClient } = require("mongodb");
 const ObjectId = require("mongodb").ObjectId;
 
+// heroku livesite
+// https://floating-plains-91880.herokuapp.com/
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -25,12 +28,20 @@ async function run() {
     await client.connect();
     const database = client.db("travelicious");
     const destinationsCollection = database.collection("destinations");
+    const ordersCollection = client.db("travelicious").collection("orders");
 
-    // GET API
+    // GET ALL DESTINATIONS API
     app.get("/destinations", async (req, res) => {
       const cursor = destinationsCollection.find({});
       const destinations = await cursor.toArray();
       res.send(destinations);
+    });
+
+    // GET ALL ORDERS API
+    app.get("/orders", async (req, res) => {
+      const cursor = ordersCollection.find({});
+      const orders = await cursor.toArray();
+      res.send(orders);
     });
 
     // GET SINGLE DESTINATION
@@ -42,11 +53,37 @@ async function run() {
       res.send(destination);
     });
 
+    // ADD ORDER
+    app.post("/addOrder", async (req, res) => {
+      const order = req.body;
+      const result = await ordersCollection.insertOne(order);
+      // console.log("from add order", result);
+      res.send(result);
+    });
+
+    // GET MY ORDER
+    app.get("/myOrders/:email", async (req, res) => {
+      console.log(req.params.email);
+      const result = await ordersCollection
+        .find({ email: req.params.email })
+        .toArray();
+      res.send(result);
+      // console.log(result);
+    });
+
+    // DELETE ORDER
+    app.delete("/deleteProduct/:productId", async (req, res) => {
+      // console.log(req.params.productId);
+      const id = req.params.productId;
+      const result = ordersCollection.deleteOne({ _id: id });
+      res.send(result);
+      // console.log(result);
+    });
+
     // POST API
     app.post("/destinations", async (req, res) => {
       const destination = req.body;
       // console.log("hit the post api", destination);
-
       const result = await destinationsCollection.insertOne(destination);
       console.log(result);
       res.send(result);
