@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
@@ -14,7 +13,6 @@ const port = process.env.PORT || 5000;
 // middleware
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.kjpcl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
@@ -75,9 +73,23 @@ async function run() {
     app.delete("/deleteProduct/:productId", async (req, res) => {
       // console.log(req.params.productId);
       const id = req.params.productId;
-      const result = ordersCollection.deleteOne({ _id: id });
+      const result = await ordersCollection.deleteOne({ _id: id });
       res.send(result);
       // console.log(result);
+    });
+
+    // UPDATE ORDER
+    app.put("/placeOrder/:orderId", async (req, res) => {
+      const id = req.params.orderId;
+      const filter = { _id: id };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          status: "Approved",
+        },
+      };
+      const result = await ordersCollection.updateOne(filter, updateDoc);
+      res.json(result);
     });
 
     // POST API
