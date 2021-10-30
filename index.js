@@ -41,7 +41,7 @@ async function run() {
     app.get("/orders", async (req, res) => {
       const cursor = ordersCollection.find({});
       const orders = await cursor.toArray();
-      res.send(orders);
+      res.json(orders);
     });
 
     // GET SINGLE DESTINATION
@@ -57,7 +57,7 @@ async function run() {
     app.post("/addOrder", async (req, res) => {
       const order = req.body;
       const result = await ordersCollection.insertOne(order);
-      // console.log("from add order", result);
+      console.log("from add order", result);
       res.send(result);
     });
 
@@ -67,7 +67,7 @@ async function run() {
       const result = await ordersCollection
         .find({ email: req.params.email })
         .toArray();
-      res.send(result);
+      res.json(result);
       // console.log(result);
     });
 

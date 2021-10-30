@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'run', 'start-dev' ]
+2 info using npm@6.14.13
+3 info using node@v14.17.1
+4 verbose run-script [ 'prestart-dev', 'start-dev', 'poststart-dev' ]
+5 info lifecycle assignment-11-server@1.0.0~prestart-dev: assignment-11-server@1.0.0
+6 info lifecycle assignment-11-server@1.0.0~start-dev: assignment-11-server@1.0.0
+7 verbose lifecycle assignment-11-server@1.0.0~start-dev: unsafe-perm in lifecycle true
+8 verbose lifecycle assignment-11-server@1.0.0~start-dev: PATH: /usr/local/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/mdhabiburrahman/Documents/web-development/projects/assignment-11-server/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+9 verbose lifecycle assignment-11-server@1.0.0~start-dev: CWD: /Users/mdhabiburrahman/Documents/web-development/projects/assignment-11-server
+10 silly lifecycle assignment-11-server@1.0.0~start-dev: Args: [ '-c', 'nodemon index.js' ]
+11 silly lifecycle assignment-11-server@1.0.0~start-dev: Returned: code: 130  signal: null
+12 info lifecycle assignment-11-server@1.0.0~start-dev: Failed to exec start-dev script
+13 verbose stack Error: assignment-11-server@1.0.0 start-dev: `nodemon index.js`
+13 verbose stack Exit status 130
+13 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-lifecycle/index.js:332:16)
+13 verbose stack     at EventEmitter.emit (events.js:375:28)
+13 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-lifecycle/lib/spawn.js:55:14)
+13 verbose stack     at ChildProcess.emit (events.js:375:28)
+13 verbose stack     at maybeClose (internal/child_process.js:1055:16)
+13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)
+14 verbose pkgid assignment-11-server@1.0.0
+15 verbose cwd /Users/mdhabiburrahman/Documents/web-development/projects/assignment-11-server
+16 verbose Darwin 20.6.0
+17 verbose argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "start-dev"
+18 verbose node v14.17.1
+19 verbose npm  v6.14.13
+20 error code ELIFECYCLE
+21 error errno 130
+22 error assignment-11-server@1.0.0 start-dev: `nodemon index.js`
+22 error Exit status 130
+23 error Failed at the assignment-11-server@1.0.0 start-dev script.
+23 error This is probably not a problem with npm. There is likely additional logging output above.
+24 verbose exit [ 130, true ]
